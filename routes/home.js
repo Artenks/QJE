@@ -6,7 +6,7 @@ let publicPath = path.join(__dirname,'../pages');
 
 router.get("/", function(req, res){
   console.log("aba home");
-  res.sendFile(`${publicPath}/home.html`)
+  res.sendFile(`${publicPath}/index.html`)
 });
 
 module.exports = router;
