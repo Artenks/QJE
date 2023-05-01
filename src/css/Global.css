@@ -1,0 +1,16 @@
+*{
+  padding: 0;
+  margin: 0;
+  outline: none;
+  text-decoration: none;
+  list-style: none;
+
+  font-family: 'Poopins', sans-serif;
+  box-sizing: border-box;
+
+  color: aliceblue;
+}
+body{
+  margin: 2%;
+  background-color: rgb(12, 12, 12);
+}
