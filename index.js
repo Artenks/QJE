@@ -8,7 +8,7 @@ const emojiRoute = require("./routes/emoji.js");
 app.use(express.static(__dirname));
 
 app.use('/', homeRoute);
-app.use('QJE/emoji', emojiRoute);
+app.use('/', emojiRoute);
 
 app.listen(PORT, () => {
   console.log("Server rodando");
