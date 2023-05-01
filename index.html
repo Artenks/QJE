@@ -5,13 +5,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta http-equiv=”Content-Security-Policy” content=”default-src ’self’; img-src *”>
-  <meta http-equiv="Feature-Policy" content="'self'>
-
   <link type="text/css" rel="stylesheet" href="./style.css">
+
+  <meta http-equiv=”Permissions-Policy” content=”interest-cohort=()”>
   <title>Que Jogo É?</title>
 </head>
 <body>
+
+  <header http-equiv="Permissions-Policy">
     <h1 class="logo">Que Jogo É?</h1>
 
     <div class="game-modes">
@@ -21,5 +22,7 @@
         <a href="/emoji">Jogar</a>
       </ul>
     </div>
+  </header>
+
 </body>
 </html>
