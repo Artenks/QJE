@@ -8,9 +8,7 @@ console.log(__filename);
 
 router.get("/emoji", function(req, res){
   console.log("aba emoji game");
-  res.send("Alor");
-  // res.sendFile(`${publicPath}/gameEmoji.html`)
-  // res.sendFile(`${publicPath}/gameEmoji.html`)
+  res.sendFile(`${publicPath}/gameEmoji.html`)
 });
 
 module.exports = router;
