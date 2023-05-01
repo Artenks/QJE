@@ -29,6 +29,7 @@ function GameEmoji() {
         </div>
 
       </div>
+      <script src="../src/scripts/autocomplete.js"></script>
     </header>
   );
 }
