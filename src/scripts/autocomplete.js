@@ -13,25 +13,20 @@ function gamesList() {
 
 gamesList();
 
+let bodyBox;
+
 let resultBox;
-let gameImage;
-let borderImage;
-let imageBox;
 
 let inputBox;
 
 let sendInput;
-let boxResult;
 
 async function keyUp() {
+  bodyBox = await document.querySelector("body");
   resultBox = await document.querySelector(".result-box");
-  imageBox = await document.querySelector(".container-image");
-  borderImage = await document.querySelector(".image-background");
-  gameImage = await document.querySelector(".game-image");
   inputBox = await document.getElementById("input-box")
 
   sendInput = await document.querySelector(".search-button");
-  boxResult = await document.querySelector(".container-result");
 
   inputBox.onkeyup = await gamesFounder;
 }
@@ -55,8 +50,6 @@ function gamesFounder(updateDisplay) {
   let input = inputBox.value;
 
   resultBox.innerHTML = '';
-  imageBox.classList.add("hide");
-  borderImage.classList.remove("popup");
   sendInput.classList.remove("hide");
 
   let n = 0;
@@ -83,18 +76,14 @@ function gamesFounder(updateDisplay) {
         console.log(resultGames[0]);
         id = resultGames[i].substring(resultGames[i].indexOf("=") + 1);
 
-        gameImage.src = `https://cdn.akamai.steamstatic.com/steam/apps/${id}/header.jpg?t=1507600`;
+        bodyBox.style.backgroundImage = `url(https://cdn.akamai.steamstatic.com/steam/apps/${id}/header.jpg?t=1507600)`;
 
-        imageBox.classList.remove("hide");
-        borderImage.classList.add("popup");
       }
 
       if (resultGames[i] != null) {
         let name = resultGames[i].substring(0, resultGames[i].indexOf("="));
 
         resultNames.push(name);
-
-        boxResult.classList.add("painel-animation");
       }
     }
     if (updateDisplay) {
@@ -103,7 +92,6 @@ function gamesFounder(updateDisplay) {
   }
   if (input.length == 0 || resultGames.length == 0) {
     sendInput.classList.add("hide");
-    boxResult.classList.remove("painel-animation");
     return;
   }
 }
@@ -120,17 +108,16 @@ function display(result) {
     resultBox.children[i].addEventListener("click", function() {
       inputBox.value = result[i];
       resultBox.innerHTML = '';
-      // gamesFounder(false);
     })
 
     resultBox.children[i].addEventListener("mouseover", function() {
       id = resultGames[i].substring(resultGames[i].indexOf("=") + 1);
       console.log(id);
 
-      gameImage.src = `https://cdn.akamai.steamstatic.com/steam/apps/${id}/header.jpg?t=1507600`;
+      bodyBox.style.backgroundImage = `url(https://cdn.akamai.steamstatic.com/steam/apps/${id}/header.jpg?t=1507600)`;
 
-      imageBox.classList.remove("hide");
-      borderImage.classList.add("popup");
+
+      console.log(bodyBox.style.backgroundImage);
     })
   }
 }

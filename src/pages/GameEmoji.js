@@ -3,11 +3,10 @@ import { sendGame } from '../scripts/autocomplete.js'
 
 function GameEmoji() {
   return (
-    <header>
+    <header className='blur-image'>
       <div className="container-info">
         <h1>Que jogo é <span>"📄🙏"</span></h1>
       </div>
-
       <div className="container-grid">
 
         <div className="container-search">
@@ -25,15 +24,8 @@ function GameEmoji() {
 
         </div>
 
-        <div className="container-result">
-          <div className='container-image hide popup'>
-            <img className="game-image" src="" alt="banner de jogo" />
-            <div className='blur-image'></div>
-          </div>
-          <div className='image-background'></div>
-
-        </div>
       </div>
+
     </header>
   );
 }

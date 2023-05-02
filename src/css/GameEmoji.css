@@ -2,6 +2,14 @@
   color:#2e2e2e;
 }
 
+body{
+  background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/1507580/header.jpg?t=1507600");
+  image-rendering: auto;
+  background-repeat:repeat-x;
+
+  transition: background-image 0.1s ease-in-out;
+}
+
 .container-info {
   margin-top: 20px;
 
@@ -41,10 +49,11 @@
 
 .container-grid{
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto;
   gap: 20px;
   justify-content: center;
   align-items: top;
+
 
   margin: 30px auto 0;
 }
@@ -93,37 +102,6 @@ input {
   text-align: left;
 }
 
-.image-background{
-  position: absolute;
-  border-radius: 3px;
-
-  border: 1px solid #fff;
-  box-shadow: 0 0 2px #fff;
-
-  width: 27.3vw;
-  height: 22.06vh;
-  image-rendering: optimizeSpeed;
-  min-height: 100px;
-  min-width: 200px;
-}
-.container-result{
-  border-radius: 3px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  position: relative;
-
-  perspective: 800px;
-
-  width: 27.3vw;
-  height: 22.06vh;
-  image-rendering: optimizeSpeed;
-  min-height: 100px;
-  min-width: 200px;
-}
-
 .result-box li {
   background-color: #e7e7e7;
   box-shadow: 0 0 10px #e2e2e2;
@@ -149,14 +127,15 @@ input {
 }
 
 .blur-image{
-  position: absolute;
+  position: fixed;
+  left: 0;
+  top: 0;
 
   width: 100%;
   height: 100%;
 
   background-color: rgba(0, 0, 0, 0.171);
-  backdrop-filter: blur(10px);
-  border-radius: 3px;
+  backdrop-filter: blur(95px);
 
   transition: scale 0.5s;
 }
@@ -167,18 +146,8 @@ input {
   align-items: center;
 }
 
-.game-image {
-  width: 27.2vw;
-  height: 21.8vh;
-  min-height: 100px;
-  min-width: 200px;
-
-  border-radius: 3px;
-  transition: scale 0.5s;
-}
-
 .painel-animation {
-  animation: image-rotate 1s infinite;
+  animation: image-rotate 25s infinite;
 }
 
 .popup {
@@ -256,18 +225,13 @@ input {
 }
 
 @media(max-width: 1100px) {
-  .container-grid{
-    grid-template-columns: auto;
-    align-items: top;
-    justify-content: center;
-  }
   .search-box{
     width: 70vw;
   }
-  .game-image{
+  /* .game-image{
     width: 350px;
     height: 200px;
-  }
+  } */
   .container-result{
     width: 352px;
     height: 202px;
