@@ -1,6 +1,5 @@
 console.log("autocomplete carregado");
 
-let availableKeywords = [];
 let games = [];
 
 function gamesList() {
@@ -16,6 +15,8 @@ gamesList();
 
 let resultBox;
 let gameImage;
+let borderImage;
+let imageBox;
 
 let inputBox;
 
@@ -24,6 +25,8 @@ let boxResult;
 
 async function keyUp() {
   resultBox = await document.querySelector(".result-box");
+  imageBox = await document.querySelector(".container-image");
+  borderImage = await document.querySelector(".image-background");
   gameImage = await document.querySelector(".game-image");
   inputBox = await document.getElementById("input-box")
 
@@ -41,19 +44,24 @@ function inputsVerify(){
 
 setTimeout(inputsVerify, 100)
 
+let resultGames = [];
+let resultNames = [];
+let id;
+
 function gamesFounder(updateDisplay) {
-  let result = [];
-  let resultNames = [];
+  resultGames = [];
+  resultNames = [];
 
   let input = inputBox.value;
 
   resultBox.innerHTML = '';
-  gameImage.classList.add("hide");
+  imageBox.classList.add("hide");
+  borderImage.classList.remove("popup");
   sendInput.classList.remove("hide");
 
   let n = 0;
   if (input.length > 0) {
-    result = games.map((game) => {
+    resultGames = games.map((game) => {
       let gameInfos = `${game.name}=${game.appid}`;
       return gameInfos;
     }).filter((keyword) => {
@@ -70,24 +78,19 @@ function gamesFounder(updateDisplay) {
       return gameCheck;
     })
 
-    if (input.length == 0 || result.length == 0) {
-      sendInput.classList.add("hide");
-      boxResult.classList.remove("painel-animation");
-      return;
-    }
-
-    for (let i = 0; i <= result.length; i++) {
+    for (let i = 0; i <= resultGames.length-1; i++) {
       if (resultNames.length == 0) {
-        console.log(result[0]);
-        let id = result[i].substring(result[i].indexOf("=") + 1);
+        console.log(resultGames[0]);
+        id = resultGames[i].substring(resultGames[i].indexOf("=") + 1);
 
         gameImage.src = `https://cdn.akamai.steamstatic.com/steam/apps/${id}/header.jpg?t=1507600`;
 
-        gameImage.classList.remove("hide");
+        imageBox.classList.remove("hide");
+        borderImage.classList.add("popup");
       }
 
-      if (result[i] != null) {
-        let name = result[i].substring(0, result[i].indexOf("="));
+      if (resultGames[i] != null) {
+        let name = resultGames[i].substring(0, resultGames[i].indexOf("="));
 
         resultNames.push(name);
 
@@ -98,24 +101,38 @@ function gamesFounder(updateDisplay) {
       display(resultNames);
     }
   }
-}
-
-function selectInput(list) {
-  inputBox.value = list.innerHTML;
-  resultBox.innerHTML = '';
-
-  gamesFounder(false);
+  if (input.length == 0 || resultGames.length == 0) {
+    sendInput.classList.add("hide");
+    boxResult.classList.remove("painel-animation");
+    return;
+  }
 }
 
 function display(result) {
   const content = result.map((list) => {
-    // return "<li onclick=selectInput(this)>" + list + "</li>";
     return(
-      `<li onClick={selectInput(this)}> ${list} </li>`
+      "<li>" + list + "</li>"
     )
   });
-  console.log(content.join(''))
-  resultBox.innerHTML = "<ul>" + content.join('') + "</ul>"
+  resultBox.innerHTML = content.join('')
+  for(let i = 0; i <= result.length-1; i++)
+  {
+    resultBox.children[i].addEventListener("click", function() {
+      inputBox.value = result[i];
+      resultBox.innerHTML = '';
+      // gamesFounder(false);
+    })
+
+    resultBox.children[i].addEventListener("mouseover", function() {
+      id = resultGames[i].substring(resultGames[i].indexOf("=") + 1);
+      console.log(id);
+
+      gameImage.src = `https://cdn.akamai.steamstatic.com/steam/apps/${id}/header.jpg?t=1507600`;
+
+      imageBox.classList.remove("hide");
+      borderImage.classList.add("popup");
+    })
+  }
 }
 
 let gameName = "";
@@ -137,4 +154,4 @@ async function takeGame(game) {
   }
 }
 
-export { sendGame, selectInput}
+export {sendGame}
