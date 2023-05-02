@@ -1,9 +1,15 @@
 import '../css/Home.css';
 
+import { changeClick } from '../scripts/dayOrNight';
+
 function Home() {
   return (
       <header>
         <h1 className="logo">Que Jogo É?</h1>
+
+        <div onClick={changeClick} className='container-theme'>
+          <i className="fas fa-moon"></i>
+        </div>
 
         <div className="game-modes">
           <ul>

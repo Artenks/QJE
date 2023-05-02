@@ -1,3 +1,16 @@
+:root{
+  --cinza-escuro: #131313;
+  --cinza-claro: #333333;
+
+  --branco-forte: #ffffff;
+  --branco-fraco: #ebebeb;
+
+  --cinza: #c4c4c4;
+
+  --amarelo: #eedf09;
+}
+
+
 .logo{
   display: flex;
   justify-content: center;
@@ -6,44 +19,125 @@
   border-radius: 4px;
 }
 
+.container-theme{
+  width: 50px;
+
+  padding: 10px;
+  border-radius: 4px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  right: 1vw;
+  top: 1vh;
+}
+
+.container-theme i{
+  font-size: 35px;
+  cursor: pointer;
+
+  transition: all 0.3s;
+}
+
+.container-theme i:hover{
+  position: relative;
+
+  scale: 1.2;
+}
+
 h1{
   padding: 5px;
-  color: #ffffff;
   width: 30vw;
-  box-shadow: 0 2px 0 #ffffff;
 }
 
 .game-modes ul{
 
   width: 35vw;
-
-  background-color: rgb(230, 230, 230);
   border-radius: 5px;
-
   margin: 0 50px;
-
   display: grid;
+
+  transition: all 0.3s;
 }
 
 .game-modes li{
   font-size: 20px;
   font-weight: bold;
-
-  color: #333333;
   padding: 20px 0 0 10px;
 }
 .game-modes span{
-  color:rgb(36, 36, 36);
   padding: 15px 10px;
 }
 
 .game-modes a{
   width: 100%;
   padding: 10px 25px;
-  color: aliceblue;
-
   text-align: center;
-  box-shadow: 0 2px 0 #eedf09;
+}
 
-  background-color: rgb(10, 10, 10);
+.game-modes ul:hover{
+  scale: 1.05;
+}
+
+body.night{
+  background-color: var(--cinza-escuro);
+}
+
+body.night .container-theme i{
+  color: var(--amarelo);
+}
+
+body.night h1{
+  color: var(--branco-forte);
+  box-shadow: 0 2px 0 var(--branco-fraco);
+}
+
+body.night .game-modes ul{
+  background-color: var(--branco-fraco);
+}
+
+body.night .game-modes li{
+  color: var(--cinza-escuro);
+}
+body.night .game-modes span{
+  color: var(--cinza-claro);
+}
+
+body.night .game-modes a{
+  color: var(--branco-fraco);
+  box-shadow: 0 2px 0 var(--amarelo);
+  background-color: var(--cinza-escuro);
+}
+
+body.day{
+  background-color: var(--branco-fraco);
+}
+
+body.day .container-theme i{
+  color: var(--cinza-claro);
+}
+
+body.day h1{
+  color: var(--cinza-escuro);
+  box-shadow: 0 2px 0 var(--cinza-escuro);
+}
+
+body.day .game-modes ul{
+  background-color: var(--cinza-claro);
+}
+
+body.day .game-modes li{
+  color: var(--branco-forte);
+}
+body.day .game-modes span{
+  color: var(--branco-fraco);
+}
+
+body.day .game-modes a{
+  color: var(--cinza-claro);
+  box-shadow: 0 2px 0 var(--amarelo);
+
+  background-color: var(--branco-forte);
 }
