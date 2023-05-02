@@ -1,5 +1,3 @@
-console.log("autocomplete carregado");
-
 let games = [];
 
 function gamesList() {
@@ -11,7 +9,13 @@ function gamesList() {
     })
 }
 
-gamesList();
+function init(){
+
+  gamesList();
+  setTimeout(inputsVerify, 100)
+
+  console.log("autocomplete carregado");
+}
 
 let bodyBox;
 
@@ -37,7 +41,6 @@ function inputsVerify(){
   }
 }
 
-setTimeout(inputsVerify, 100)
 
 let resultGames = [];
 let resultNames = [];
@@ -140,4 +143,4 @@ async function takeGame(game) {
   }
 }
 
-export {sendGame}
+export {sendGame, init}

@@ -1,5 +1,4 @@
 import '../css/Home.css';
-
 import { changeClick } from '../scripts/dayOrNight';
 
 function Home() {
