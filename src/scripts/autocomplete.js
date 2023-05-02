@@ -106,6 +106,8 @@ function display(result) {
   for(let i = 0; i <= result.length-1; i++)
   {
     resultBox.children[i].addEventListener("click", function() {
+      id = resultGames[i].substring(resultGames[i].indexOf("=") + 1);
+
       inputBox.value = result[i];
       resultBox.innerHTML = '';
     })
@@ -115,9 +117,6 @@ function display(result) {
       console.log(id);
 
       bodyBox.style.backgroundImage = `url(https://cdn.akamai.steamstatic.com/steam/apps/${id}/header.jpg?t=1507600)`;
-
-
-      console.log(bodyBox.style.backgroundImage);
     })
   }
 }
@@ -132,7 +131,7 @@ function sendGame() {
 }
 
 async function takeGame(game) {
-  if (game.name.toLowerCase() == inputBox.value.toLowerCase()) {
+  if (game.name.toLowerCase() == inputBox.value.toLowerCase() && game.appid == id) {
     gameName = await game.name;
     gameId = await game.appid;
     alert(`${gameName}.${gameId}`);
