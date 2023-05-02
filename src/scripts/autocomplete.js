@@ -3,31 +3,48 @@ console.log("autocomplete carregado");
 let availableKeywords = [];
 let games = [];
 
-async function gamesList() {
-  await fetch("../steam.json")
-    .then(async (response) => {
-      console.log(response.json());
-      await response.json()
-        .then(async (app) => {
-          console.log(await app);
-          games = await app.applist.apps;
-        })
+function gamesList() {
+  fetch("../steam.json")
+    .then((response) => {
+      response.json().then((app) => {
+        games = app.applist.apps;
+      })
     })
 }
 
 gamesList();
 
-const resultBox = document.querySelector(".result-box");
-const inputBox = document.getElementById("input-box");
+let resultBox;
+let gameImage;
 
-const gameImage = document.querySelector(".game-image");
+let inputBox;
 
-const sendInput = document.querySelector(".search-button");
-const boxResult = document.querySelector(".container-result");
+let sendInput;
+let boxResult;
 
-async function gamesFounder(updateDisplay) {
+async function keyUp() {
+  resultBox = await document.querySelector(".result-box");
+  gameImage = await document.querySelector(".game-image");
+  inputBox = await document.getElementById("input-box")
+
+  sendInput = await document.querySelector(".search-button");
+  boxResult = await document.querySelector(".container-result");
+
+  inputBox.onkeyup = await gamesFounder;
+}
+
+function inputsVerify(){
+  if (inputBox == null) {
+    keyUp();
+  }
+}
+
+setTimeout(inputsVerify, 100)
+
+function gamesFounder(updateDisplay) {
   let result = [];
   let resultNames = [];
+
   let input = inputBox.value;
 
   resultBox.innerHTML = '';
@@ -35,11 +52,8 @@ async function gamesFounder(updateDisplay) {
   sendInput.classList.remove("hide");
 
   let n = 0;
-
   if (input.length > 0) {
-    console.log(await games);
-
-    result = await games.map((game) => {
+    result = games.map((game) => {
       let gameInfos = `${game.name}=${game.appid}`;
       return gameInfos;
     }).filter((keyword) => {
@@ -56,8 +70,15 @@ async function gamesFounder(updateDisplay) {
       return gameCheck;
     })
 
+    if (input.length == 0 || result.length == 0) {
+      sendInput.classList.add("hide");
+      boxResult.classList.remove("painel-animation");
+      return;
+    }
+
     for (let i = 0; i <= result.length; i++) {
       if (resultNames.length == 0) {
+        console.log(result[0]);
         let id = result[i].substring(result[i].indexOf("=") + 1);
 
         gameImage.src = `https://cdn.akamai.steamstatic.com/steam/apps/${id}/header.jpg?t=1507600`;
@@ -77,23 +98,6 @@ async function gamesFounder(updateDisplay) {
       display(resultNames);
     }
   }
-  if (input.length == 0) {
-    sendInput.classList.add("hide");
-    boxResult.classList.remove("painel-animation");
-  }
-}
-
-async function keyUp() {
-  inputBox.onkeyup = await gamesFounder;
-}
-keyUp();
-
-function display(result) {
-  const content = result.map((list) => {
-    return "<li onclick=selectInput(this)>" + list + "</li>";
-  });
-
-  resultBox.innerHTML = "<ul>" + content.join('') + "</ul>"
 }
 
 function selectInput(list) {
@@ -103,11 +107,21 @@ function selectInput(list) {
   gamesFounder(false);
 }
 
+function display(result) {
+  const content = result.map((list) => {
+    // return "<li onclick=selectInput(this)>" + list + "</li>";
+    return(
+      `<li onClick={selectInput(this)}> ${list} </li>`
+    )
+  });
+  console.log(content.join(''))
+  resultBox.innerHTML = "<ul>" + content.join('') + "</ul>"
+}
+
 let gameName = "";
 let gameId = 0;
 
 function sendGame() {
-
   games.map((game) => {
     takeGame(game);
   });
@@ -123,4 +137,4 @@ async function takeGame(game) {
   }
 }
 
-export { sendGame }
+export { sendGame, selectInput}

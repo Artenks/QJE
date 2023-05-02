@@ -1,5 +1,5 @@
 import '../css/GameEmoji.css';
-import {sendGame} from '../scripts/autocomplete.js'
+import {sendGame, selectInput} from '../scripts/autocomplete.js'
 
 function GameEmoji() {
   return (
@@ -21,7 +21,6 @@ function GameEmoji() {
             <div className="result-box"></div>
           </div>
 
-
         </div>
 
         <div className="container-result">
@@ -29,7 +28,6 @@ function GameEmoji() {
         </div>
 
       </div>
-      <script src="../src/scripts/autocomplete.js"></script>
     </header>
   );
 }
