@@ -4,7 +4,7 @@ function gamesList() {
   fetch("../steam.json")
     .then((response) => {
       response.json().then((app) => {
-        games = app.applist.apps;
+      games = app.applist.apps;
       })
     })
 }
@@ -143,4 +143,4 @@ async function takeGame(game) {
   }
 }
 
-export {sendGame, init}
+export {sendGame, init, gamesList}

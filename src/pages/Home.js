@@ -16,6 +16,11 @@ function Home() {
             <span>~ Advinhe o nome do jogo por meio de emojis 😎</span>
             <a href="/emoji">Jogar</a>
           </ul>
+          <ul>
+            <li>Lista de jogos</li>
+            <span>~ Lista com todos os jogos</span>
+            <a href="/list">Ver</a>
+          </ul>
         </div>
       </header>
   );

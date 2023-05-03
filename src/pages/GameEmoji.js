@@ -1,16 +1,17 @@
 import '../css/GameEmoji.css';
 import { sendGame, init } from '../scripts/autocomplete.js';
-import {ChoiceQuestion} from '../scripts/game.js';
+import {ChoiceQuestion, foundTitle} from '../scripts/game.js';
 
 
 function GameEmoji() {
   init();
+  foundTitle('.emoji-title')
   ChoiceQuestion("../emojiQuestions.json");
   return (
     <header className='blur-image'>
 
       <div className="container-info">
-        <h1>Que jogo é <span>"📄🙏"</span></h1>
+        <h1>O jogo é <span className='emoji-title'>""</span></h1>
       </div>
       <div className="container-grid">
 
