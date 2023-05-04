@@ -1,38 +1,58 @@
 let contentBox = null;
+let titleBox = null;
 
 let games = [];
 
 function gamesList() {
-  fetch("../steam.json")
-    .then(async (response) => {
-      await response.json().then(async (app) => {
+  fetch("../steam.json").then(async (response) => {
+    await response.json().then(async (app) => {
       games = await app.applist.apps;
-      createList();
-      })
-    })
+      takeLimitedGames();
+      titleBox.innerHTML = `Total de <span>${games.length}</span> jogos.`;
+    });
+  });
 }
 
-async function init(){
+function init() {
   setInterval(async () => {
-    if(contentBox != null)
-    {
+    if (contentBox != null) {
       clearInterval(this);
     }
-    contentBox = await document.querySelector('.container-list');
+    contentBox = await document.querySelector(".container-list");
+    titleBox = await document.querySelector(".title-count");    
 
   }, 10);
 
   gamesList();
 }
+let gameIndex = 0;
+let gamesLimited = [];
 
-async function createList(){
+let limit = 100;
 
-  const content = games.map((game) => {
-    return(
-      "<li className='item'>" + game.name +" <span> ID "+ game.appid +"</span>"+ "</li>"
-    )
-  });
-  contentBox.innerHTML = `<ul className='contents'> ${content.join('')} </ul>`
+function takeLimitedGames() {
+  if (gameIndex >= games.length) return;
+
+  for (gameIndex; gameIndex <= limit; gameIndex++) {
+    gamesLimited.push(games[gameIndex]);
+  }
+
+  createList();
+  limit += 100;
 }
 
-export { createList, init }
+async function createList() {
+  const content = gamesLimited.map((game) => {
+    return (
+      "<li className='item'>" +
+      game.name +
+      " <span> ID " +
+      game.appid +
+      "</span>" +
+      "</li>"
+    );
+  });
+  contentBox.innerHTML = `<ul className='contents'> ${content.join("")} </ul>`;
+}
+
+export { createList, init, takeLimitedGames };

@@ -19,7 +19,7 @@ function Home() {
           <ul>
             <li>Lista de jogos</li>
             <span>~ Lista com todos os jogos</span>
-            <a href="/list">Ver</a>
+            <a href="/lista">Ver</a>
           </ul>
         </div>
       </header>

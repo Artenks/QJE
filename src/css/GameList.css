@@ -1,14 +1,16 @@
-.container-list{
-  padding: 10px 30px;
-  margin: auto;
+header{
+  margin: 20px 0;
+}
 
-  width: 90%;
+.container-list{
+  padding: 15px 30px;
+  margin: auto;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  background-color: rgb(24, 24, 24);
+  border-radius: 5px;
 }
 
 .container-list ul{
@@ -16,21 +18,85 @@
   grid-template-columns: auto auto auto auto;
 }
 
+.title-count{
+  padding: 10px;
+  margin: 0 30px;
+  background-color: rgb(218, 218, 218);
+  box-shadow: 3px 3px rgb(219, 186, 0);
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border-radius: 10px;
+
+  color: rgb(87, 87, 87);
+}
+
+.title-count span{
+  background-color: rgb(231, 216, 3);
+  color: rgb(100, 85, 0);
+  box-shadow: 3px 3px #b89c00;
+  border-radius: 3px;
+  margin: 3px;
+
+  padding: 2px 10px;
+}
+
+.button-continue{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  text-decoration: none;
+  outline: none;
+  font-weight: bold;
+
+  height: 35px;
+  width: 50px;
+
+  border-radius: 5px;
+  border: 0;
+
+  background-color: rgb(255, 217, 0);
+  box-shadow: 3px 3px #b89c00;
+  color: #706e00;
+
+  transition: all 0.3s;
+}
+.button-continue:hover{
+  scale: 1.1;
+}
+
 .container-list li{
   padding: 5px 15px;
   margin: 5px;
   background-color: rgb(236, 236, 236);
-  box-shadow: 3px 3px #fcd708;
+  box-shadow: 2px 2px #fcd708;
+
+  border-radius: 5px;
 
   display: inline-block;
   border-radius: 5px;
+  transition: all 0.3s;
+  
+}
+.container-list li:hover{
+  scale: 1.1;
+}
+
+button{
+  display: flex;
+  width: 50%;
+  margin: auto;
 }
 
 .container-list li span{
-  padding: 3px 3px;
+  padding: 5px 2px;
   margin: 0 5px;
   background-color: rgb(255, 230, 0);
+  color: #3b3713;
   box-shadow: 2px 2px #3b3713;
+
+  font-size: 11px;
 
   border-radius: 2px;
 
